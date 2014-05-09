@@ -14,7 +14,7 @@ nWords :: Int
 nWords = 100
 
 tests :: [Int]
-tests = [10, 100, 500, 1000, 2000, 5000, 10000, 50000, 100000, 147277]
+tests = [10, 100, 500, 1000, 5000, 10000, 50000, 100000, 147277]
 
 type StrStrFun = CString -> CString -> IO CString
 
@@ -37,10 +37,10 @@ main = do
   where
     testWith ws content nChars =
         bgroup (show nChars) [
-              testFun ws content strstr           "strstr"
-            , testFun ws content fast_strstr      "fast_strstr"
-            , testFun ws content naive_strstr     "naive_strstr"
-            , testFun ws content volnitsky_strstr "volnitsky_strstr"
+              testFun ws content strstr           "strstr()"
+            , testFun ws content fast_strstr      "fast_strstr()"
+            , testFun ws content naive_strstr     "naive strstr()"
+            , testFun ws content volnitsky_strstr "Volnitsky's strstr()"
             ]
 
     testFun ws content fun funName =
