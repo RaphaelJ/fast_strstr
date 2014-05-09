@@ -1,0 +1,26 @@
+name:              fast-strstr
+version:           0.0.0
+license:           GPL-3
+author:            Raphael Javaux <raphaeljavaux[at]gmail.com>
+maintainer:        Raphael Javaux <raphaeljavaux[at]gmail.com>
+synopsis:          fast_strstr benchmark.
+stability:         Experimental
+cabal-version:     >= 1.9.2
+build-type:        Simple
+
+executable benchmark
+    main-is:            Benchmark.hs
+    ghc-options:        -Wall -O2 -rtsopts
+
+    c-sources:          ../fast_strstr.c
+                        algorithms/naive_strstr.c
+                        algorithms/volnitsky_strstr.c
+    include-dirs:       ../
+                        algorithms/
+    cc-options:         -Wall -O3
+
+    build-tools:        hsc2hs
+
+    build-depends: base                         >= 4            && < 5
+                 , criterion                    >= 0.8          && < 1.0
+                 , random                       >= 1.0.1.1      && < 2.0
