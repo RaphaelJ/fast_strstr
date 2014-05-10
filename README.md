@@ -76,7 +76,7 @@ impressive results (`strstr()` defeated `fast_strstr()` is most cases). We are
 working on what could give such poorer results. As said in the introduction,
 we suggest you to try the algorithm on your data before discarding `strstr()`.
 
-Benchmark script is available [here](benchmark).
+Benchmark scripts are available [here](benchmark).
 
 License
 -------
