@@ -14,7 +14,7 @@ nWords :: Int
 nWords = 100
 
 tests :: [Int]
-tests = [10, 100, 500, 1000, 5000, 10000, 50000, 100000, 147277]
+tests = [10, 100, 500, 1000, 5000, 10000, 50000, 147277]
 
 type StrStrFun = CString -> CString -> IO CString
 
