@@ -85,7 +85,7 @@ char *fast_strstr(const char *haystack, const char *needle)
 
         if (
                haystack_sum == needle_sum
-            && memcmp(prec_start, needle, needle_len) == 0
+            && memcmp(prec_start, needle, needle_len-1) == 0
         )
             return (char *) prec_start;
     }
