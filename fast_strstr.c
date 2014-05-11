@@ -83,9 +83,12 @@ char *fast_strstr(const char *haystack, const char *needle)
         haystack_sum -= *prec_start++;
         haystack_sum += *i_haystack;
 
+        // Since the sum of the characters is already known to be equal at that
+        // point, it is enough to check just needle_len-1 characters for
+        // equality.
         if (
                haystack_sum == needle_sum
-            && memcmp(prec_start, needle, needle_len-1) == 0
+            && memcmp(prec_start, needle, needle_len - 1) == 0
         )
             return (char *) prec_start;
     }
