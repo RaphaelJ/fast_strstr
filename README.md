@@ -36,6 +36,10 @@ algorithm to skip a large number of comparisons.
 A reference implementation of the algorithm is freely available
 [here](fast_strstr.c).
 
+This algorithm is a special case of the
+[Rabin-Karp algorithm](http://en.wikipedia.org/wiki/Rabin-Karp_algorithm) for
+sub-string search which uses a simple sum as rolling hash function.
+
 Benchmarks
 ----------
 
@@ -71,10 +75,12 @@ along with the full text (147277 characters) have been used.
 Notice that the algorithm doesn't require to pre-process the sub-string while
 other algorithms such as Volnitsky's do, it is also fast on short strings.
 
-Benchmark was also tried on a newer *Intel's Haswell* processor, with less
-impressive results (`strstr()` defeated `fast_strstr()` is most cases). We are
-working on what could give such poorer results. As said in the introduction,
-we suggest you to try the algorithm on your data before discarding `strstr()`.
+Benchmark was also tried on newer *Intel's Haswell* and *Sandy Bridge*
+processors, with less impressive results (`strstr()` defeated `fast_strstr()` in
+for large texts).
+We are working on what could give such poorer results. As said in the
+introduction, we suggest you to try the algorithm on your data before discarding
+`strstr()`.
 
 Benchmark scripts are available [here](benchmark).
 
