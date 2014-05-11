@@ -79,15 +79,15 @@ char *fast_strstr(const char *haystack, const char *needle)
 
     // Loops for the remaining of the haystack, updating the sum iteratively.
     const char   *prec_start;
-    for (prec_start = haystack; *i_haystack; i_haystack++, prec_start++) {
-        haystack_sum -= *prec_start;
+    for (prec_start = haystack; *i_haystack; i_haystack++) {
+        haystack_sum -= *prec_start++;
         haystack_sum += *i_haystack;
 
         if (
                haystack_sum == needle_sum
-            && memcmp(prec_start + 1, needle, needle_len) == 0
+            && memcmp(prec_start, needle, needle_len-1) == 0
         )
-            return (char *) prec_start + 1;
+            return (char *) prec_start;
     }
 
     return NULL;
