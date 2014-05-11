@@ -76,13 +76,13 @@ Notice that the algorithm doesn't require to pre-process the sub-string while
 other algorithms such as Volnitsky's do, it is also fast on short strings.
 
 Benchmarks were also tried by third parties on newer *Intel*'s *Haswell* and
-*Sandy Bridge* processors, with less impressive results (`strstr()` defeated
-`fast_strstr()` in for large texts).
+*Sandy Bridge* processors, with less impressive results (`strstr()`
+significantly defeated `fast_strstr()` when reading large texts).
 We are working on what could give such poorer results. As said in the
 introduction, we suggest you to try the algorithm on your data before discarding
 `strstr()`.
 
-Benchmark scripts are available [here](benchmark). These have been writen in
+Benchmark scripts are available [here](benchmark). These have been written in
 *Haskell* and require the *Criterion* benchmarking library to run.
 
 If you want to run the benchmarks on your hardware, download and install the
