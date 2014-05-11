@@ -75,14 +75,27 @@ along with the full text (147277 characters) have been used.
 Notice that the algorithm doesn't require to pre-process the sub-string while
 other algorithms such as Volnitsky's do, it is also fast on short strings.
 
-Benchmark was also tried on newer *Intel's Haswell* and *Sandy Bridge*
-processors, with less impressive results (`strstr()` defeated `fast_strstr()` in
-for large texts).
+Benchmarks were also tried by third parties on newer *Intel*'s *Haswell* and
+*Sandy Bridge* processors, with less impressive results (`strstr()` defeated
+`fast_strstr()` in for large texts).
 We are working on what could give such poorer results. As said in the
 introduction, we suggest you to try the algorithm on your data before discarding
 `strstr()`.
 
-Benchmark scripts are available [here](benchmark).
+Benchmark scripts are available [here](benchmark). These have been writen in
+*Haskell* and require the *Criterion* benchmarking library to run.
+
+If you want to run the benchmarks on your hardware, download and install the
+*Glasgow Haskell Compiler* and its library manager *Cabal*. Then go in the
+[benchmark/](benchmark) directory and ask `cabal` to install the required
+libraries :
+
+```
+cabal install --only-dependencies
+```
+
+Then compile the benchmark executable using `cabal build`. The resulting
+executable should be located at `benchmark/dist/build/benchmark/benchmark`.
 
 License
 -------
