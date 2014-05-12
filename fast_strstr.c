@@ -52,20 +52,19 @@ char *fast_strstr(const char *haystack, const char *needle)
 
     // First characters of haystack and needle are the same now. Both are
     // guaranteed to be at least one character long.
-    // Now computes the sum of characters values of needle together with the
-    // sum of the first needle_len characters of haystack.
+    // Now computes the sum of the first needle_len characters of haystack
+    // minus the sum of characters values of needle.
 
     const char   *i_haystack    = haystack + 1
              ,   *i_needle      = needle   + 1;
 
-    unsigned int  haystack_sum  = *haystack
-               ,  needle_sum    = *haystack;
+    unsigned int  sums_diff     = *haystack;
     bool          identical     = true;
 
     while (*i_haystack && *i_needle) {
-        haystack_sum += *i_haystack;
-        needle_sum   += *i_needle;
-        identical    &= *i_haystack++ == *i_needle++;
+        sums_diff += *i_haystack;
+        sums_diff -= *i_needle;
+        identical &= *i_haystack++ == *i_needle++;
     }
 
     // i_haystack now references the (needle_len + 1)-th character.
@@ -80,14 +79,14 @@ char *fast_strstr(const char *haystack, const char *needle)
     // Loops for the remaining of the haystack, updating the sum iteratively.
     const char   *prec_start;
     for (prec_start = haystack; *i_haystack; i_haystack++) {
-        haystack_sum -= *prec_start++;
-        haystack_sum += *i_haystack;
+        sums_diff -= *prec_start++;
+        sums_diff += *i_haystack;
 
         // Since the sum of the characters is already known to be equal at that
         // point, it is enough to check just needle_len-1 characters for
         // equality.
         if (
-               haystack_sum == needle_sum
+               sums_diff == 0
             && memcmp(prec_start, needle, needle_len - 1) == 0
         )
             return (char *) prec_start;
