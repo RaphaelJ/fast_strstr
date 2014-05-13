@@ -74,12 +74,14 @@ char *fast_strstr(const char *haystack, const char *needle)
     else if (identical)
         return (char *) haystack;
 
-    size_t        needle_len = i_needle - needle;
+    const char    needle_first  = *needle;
+    size_t        needle_len    = i_needle - needle;
+    size_t        needle_len_1  = needle_len - 1;
 
     // Loops for the remaining of the haystack, updating the sum iteratively.
-    const char   *prec_start;
-    for (prec_start = haystack; *i_haystack; i_haystack++) {
-        sums_diff -= *prec_start++;
+    const char   *sub_start;
+    for (sub_start = haystack; *i_haystack; i_haystack++) {
+        sums_diff -= *sub_start++;
         sums_diff += *i_haystack;
 
         // Since the sum of the characters is already known to be equal at that
@@ -87,9 +89,10 @@ char *fast_strstr(const char *haystack, const char *needle)
         // equality.
         if (
                sums_diff == 0
-            && memcmp(prec_start, needle, needle_len - 1) == 0
+            && needle_first == *sub_start // Avoids some calls to memcmp.
+            && memcmp(sub_start, needle, needle_len_1) == 0
         )
-            return (char *) prec_start;
+            return (char *) sub_start;
     }
 
     return NULL;
