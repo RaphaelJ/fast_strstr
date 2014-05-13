@@ -44,9 +44,11 @@ char *fast_strstr(const char *haystack, const char *needle)
     if (!*needle) // Empty needle.
         return (char *) haystack;
 
+    const char    needle_first  = *needle;
+
     // Runs strchr() on the first section of the haystack as it has a lower
     // algorithmic complexity for discarding the first non-matching characters.
-    haystack = strchr(haystack, *needle);
+    haystack = strchr(haystack, needle_first);
     if (!haystack) // First character of needle is not in the haystack.
         return NULL;
 
@@ -74,7 +76,6 @@ char *fast_strstr(const char *haystack, const char *needle)
     else if (identical)
         return (char *) haystack;
 
-    const char    needle_first  = *needle;
     size_t        needle_len    = i_needle - needle;
     size_t        needle_len_1  = needle_len - 1;
 
