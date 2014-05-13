@@ -73,7 +73,7 @@ along with the full text (147277 characters) have been used.
 | Volnitsky         | 635 µs (0.7×)     | 1.3 ms (0.8×)     | 10 ms (1.2×)       | 58.6 ms (2.3×)     |
 | **fast_strstr()** | **540 µs (0.6×)** | **1.1 ms (0.6×)** | **5.5 ms (0.6×)**  | **17.2 ms (0.6×)** |
 
-Notice that the algorithm doesn't require to pre-process the sub-string while
+Notice that as the algorithm doesn't require to pre-process the sub-string while
 other algorithms such as Volnitsky's do, it is also fast on short strings.
 
 Benchmarks were also tried by third parties on newer *Intel*'s *Haswell* and
